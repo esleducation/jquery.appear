@@ -51,9 +51,9 @@
     var left = offset.left;
     var top = offset.top;
 
-    if (top + $element.height() + $element.data('appear-bottom-offset') >= window_top &&
+   if (top + $element.height() + ($element.data('appear-bottom-offset') || 0) >= window_top &&
         top - ($element.data('appear-top-offset') || 0) <= window_top + $window.height() &&
-        left + $element.width() + $element.data('appear-right-offset') >= window_left &&
+        left + $element.width() + ($element.data('appear-right-offset') || 0) >= window_left &&
         left - ($element.data('appear-left-offset') || 0) <= window_left + $window.width()) {
       return true;
     } else {
