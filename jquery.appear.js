@@ -6,7 +6,7 @@
  *
  * https://github.com/morr/jquery.appear/
  *
- * Version: 0.3.3
+ * Version: 0.3.5
  */
 (function($) {
   var selectors = [];
@@ -51,10 +51,19 @@
     var left = offset.left;
     var top = offset.top;
 
-   if (top + $element.height() + ($element.data('appear-bottom-offset') || 0) >= window_top &&
-        top - ($element.data('appear-top-offset') || 0) <= window_top + $window.height() &&
-        left + $element.width() + ($element.data('appear-right-offset') || 0) >= window_left &&
-        left - ($element.data('appear-left-offset') || 0) <= window_left + $window.width()) {
+    var bottomOffset = $element.data('appear-bottom-offset');
+    if (bottomOffset == undefined) bottomOffset = 0;
+    var topOffset = $element.data('appear-top-offset');
+    if (topOffset == undefined) topOffset = 0;
+    var leftOffset = $element.data('appear-left-offset');
+    if (leftOffset == undefined) leftOffset = 0;
+    var rightOffset = $element.data('appear-right-offset');
+    if (rightOffset == undefined) rightOffset = 0;
+
+   if (top + $element.height() + bottomOffset >= window_top &&
+        top - topOffset <= window_top + $window.height() &&
+        left + $element.width() + rightOffset >= window_left &&
+        left - leftOffset <= window_left + $window.width()) {
       return true;
     } else {
       return false;
