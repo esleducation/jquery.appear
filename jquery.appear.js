@@ -9,17 +9,16 @@
  * Version: 0.3.6
  */
 (function($) {
-  var selectors = [];
-
-  var check_binded = false;
-  var check_lock = false;
-  var defaults = {
-    interval: 250,
-    force_process: false
-  }
-  var $window = $(window);
-
-  var $prior_appeared;
+  
+  var selectors = [],
+      check_binded = false,
+      check_lock   = false,
+      defaults     = {
+        interval: 250,
+        force_process: false
+      },
+      $window      = $(window),
+      $prior_appeared;
 
   function process() {
     check_lock = false;
@@ -41,24 +40,21 @@
   // "appeared" custom filter
   $.expr[':']['appeared'] = function(element) {
     var $element = $(element);
-    if (!$element.is(':visible')) {
-      return false;
+
+    if ((element.style && element.style.display) || $.css( element, "display" ) === "none") {
+     return false;
     }
 
-    var window_left = $window.scrollLeft();
-    var window_top = $window.scrollTop();
-    var offset = $element.offset();
-    var left = offset.left;
-    var top = offset.top;
+    var window_left = $window.scrollLeft(),
+        window_top  = $window.scrollTop(),
+        offset      = $element.offset(),
+        left        = offset.left,
+        top         = offset.top;
 
-    var bottomOffset = $element.data('appear-bottom-offset');
-    if (bottomOffset == undefined) bottomOffset = 0;
-    var topOffset = $element.data('appear-top-offset');
-    if (topOffset == undefined) topOffset = 0;
-    var leftOffset = $element.data('appear-left-offset');
-    if (leftOffset == undefined) leftOffset = 0;
-    var rightOffset = $element.data('appear-right-offset');
-    if (rightOffset == undefined) rightOffset = 0;
+    var bottomOffset = $element.data('appear-bottom-offset') || 0,
+        topOffset    = $element.data('appear-top-offset') || 0,
+        leftOffset   = $element.data('appear-left-offset') || 0,
+        rightOffset  = $element.data('appear-right-offset') || 0;
 
    if (top + $element.height() + bottomOffset >= window_top &&
         top - topOffset <= window_top + $window.height() &&
