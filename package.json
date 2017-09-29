@@ -1,0 +1,16 @@
+{
+  "name": "jquery.appear",
+  "title": "jQuery Appear",
+  "description": "It implements a custom 'appear'/'disappear' events which are fired when an element became visible/invisible in the browser view port.",
+  "keywords": [
+    "event",
+    "appear",
+    "disappear"
+  ],
+  "version": "0.3.7",
+  "main": "jquery.appear.js",
+  "licenses": "MIT",
+  "dependencies": {
+    "jquery": ">=1.5"
+  }
+}
